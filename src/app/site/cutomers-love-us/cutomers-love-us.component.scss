@@ -1,0 +1,41 @@
+.customers-love-us {
+    .customers-details {
+        text-align: center;
+
+        h3 {
+            color: #666d7d;
+            font-size: 20px;
+            font-weight: 400;
+        }
+    }
+
+    .customers {
+        display: flex;
+        margin: 7rem;
+
+        .no-of-customers {
+            display: flex;
+            flex-wrap: wrap;
+
+            h1 {
+                font-size: clamp(50px, 7vw, 120px);
+                line-height: 1.13;
+                font-weight: 900;
+                color: #1077da
+            }
+
+            .happy-customer {
+                margin: 4.2rem 0rem 0rem 1rem;
+                font-size: 1.4rem;
+                font-weight: 500;
+            }
+
+            .details {
+                font-family: "Nunito Sans", sans-serif;
+                margin-right: 10rem;
+                font-size: 20px;
+                letter-spacing: 1.3px;
+            }
+        }
+    }
+}

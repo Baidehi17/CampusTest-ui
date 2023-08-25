@@ -1,0 +1,10 @@
+<div class="sidebar">
+    <div  *ngFor="let menu of sidebarMenu">
+        <button class="menu-button">
+            <p class="sidebar-title">
+                <i class={{menu.icon}}></i>
+                {{menu.label}}
+            </p>           
+        </button>
+    </div>
+</div>
