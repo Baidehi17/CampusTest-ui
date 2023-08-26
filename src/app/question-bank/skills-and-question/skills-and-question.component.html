@@ -1,29 +1,45 @@
 <div class="skill-question ms-4">
     <div class="top-bar mt-3">
-        <h4>Skills & Questions</h4>
+        <h4>Question Paper</h4>
         <div class="mb-2">
-            <p-button label="Add Skill" styleClass="p-button-sm" class="buttons"></p-button>
-            <p-button label="Add Question" styleClass="p-button-sm" class="buttons"></p-button>
+            <p-button label="Add Question Paper" styleClass="p-button-sm" class="buttons" (onClick)="addQuestionPaper()"></p-button>
 
-            <button *ngIf="screenWidth <= 768" (click)="openSidebar()"><i class="pi pi-bars"
-                    style="font-size: 1.2rem;"></i></button>
-            <p-sidebar *ngIf="screenWidth <= 768 && sidebarVisible" [(visible)]="sidebarVisible" [modal]="false"
+            <!-- <button *ngIf="screenWidth <= 768" (click)="openSidebar()"><i class="pi pi-bars"
+                    style="font-size: 1.2rem;"></i></button> -->
+            <!-- <p-sidebar *ngIf="screenWidth <= 768 && sidebarVisible" [(visible)]="sidebarVisible" [modal]="false"
                 [baseZIndex]="10000">
                 <div>
                     <ul>
                         <ng-container>
                             <li>
-                                <span class="p-menuitem-text">Add Skills <br> Add Question</span>
+                                <span class="p-menuitem-text">
+                                    <button>Add Skill</button>
+                                    <button>Add Question</button>
+                                </span>
                             </li>
                         </ng-container>
                     </ul>
                 </div>
-            </p-sidebar>
+            </p-sidebar> -->
         </div>
     </div>
     <div>
-        <div *ngFor="let s of questionDetails">
-            <app-skills-and-question-card [id]="s.id"></app-skills-and-question-card>
+        <div class="row">
+            <div class="question-cards col-md-3 m-1 mt-5 " *ngFor="let skill of questionDetails">
+                <div class="question-details">
+                    <p class="h6 ms-2 mt-2">{{skill.questionType}}<img src="assets/edit.svg"></p>
+                    <p class="question-info  ms-2">{{skill.description}}</p>
+                    <div class="mt-4 ms-2 total-questions">
+                        <p>view / Add Questions</p>
+                    </div>
+                </div>
+                <div class="total-question mt-2 ms-2">
+                    <app-skills-and-question-card [id]="skill.id"></app-skills-and-question-card>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+<ng-template #popupTemplate>
+    <app-pop-up-form></app-pop-up-form>
+</ng-template>

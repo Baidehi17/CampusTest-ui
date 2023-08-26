@@ -23,10 +23,10 @@ export class ApiCallService {
     return this.http.get<QuestionDetails[]>(this.apiURL);
   }
   getSubQuestionDetailsByID(id: number): Observable<subQuestions[]> {
-    return this.http.get<subQuestions[]>(`https://localhost:7053/api/QuestionDetails?id=${id}`);
+    return this.http.get<subQuestions[]>(`https://localhost:7053/api/SubQuestions/id?id=${id}`);
   }
   
   getQuestionDetailsByID(id: number): Observable<QuestionDetails[]> {
-    return this.http.get<QuestionDetails[]>(`https://localhost:7053/api/SubQuestions?id=${id}`);
+    return this.http.get<QuestionDetails[]>(`https://localhost:7053/api/QuestionDetails/id?id=${id}`);
   }
 }

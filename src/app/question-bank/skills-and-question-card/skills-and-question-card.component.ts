@@ -12,28 +12,24 @@ import { ApiCallService } from 'src/app/service/api-call.service';
 })
 export class SkillsAndQuestionCardComponent implements OnInit {
 
+
   @Input() id!: number;
-  questionDetails: QuestionDetails[]=[];
-  subQuestion: subQuestions[]=[];
+
+  subQuestion: subQuestions[] = [];
+  skills: skillAndQuestion[] = [];
+
   constructor(private skillTest: ApiCallService) { }
 
   ngOnInit(): void {
-    this.getQuestionDetails();
+    this.skillTest.skillAndQuestion().subscribe(res => {
+      this.skills = res;
+    })
     this.getsubQuestionDetails();
   }
-
-
   getsubQuestionDetails() {
     this.skillTest.getSubQuestionDetailsByID(this.id).subscribe(res => {
       console.log(res);
-      this.subQuestion =res;
-    })
-  }
-
-  getQuestionDetails() {
-    this.skillTest.getQuestionDetailsByID(this.id).subscribe(res => {
-      console.log(res);
-      this.questionDetails=res;
+      this.subQuestion = res;
     })
   }
 }

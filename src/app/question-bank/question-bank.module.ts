@@ -5,10 +5,12 @@ import { ButtonModule } from 'primeng/button';
 
 import { SidebarModule } from 'primeng/sidebar';
 import { SkillsAndQuestionCardComponent } from './skills-and-question-card/skills-and-question-card.component';
+import { PopUpFormComponent } from './pop-up-form/pop-up-form.component';
 @NgModule({
   declarations: [
     SkillsAndQuestionComponent,
-    SkillsAndQuestionCardComponent
+    SkillsAndQuestionCardComponent,
+    PopUpFormComponent
   ],
   imports: [
     CommonModule,
