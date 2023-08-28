@@ -1,7 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { lastValueFrom } from 'rxjs';
-import { QuestionDetails } from 'src/app/model/QuestionDetails';
-import { skillAndQuestion } from 'src/app/model/skills-and-question';
 import { subQuestions } from 'src/app/model/subQuestions';
 import { ApiCallService } from 'src/app/service/api-call.service';
 
@@ -15,7 +12,7 @@ export class SkillsAndQuestionCardComponent implements OnInit {
 
   @Input() id!: number;
   @Input() questionId!: number;
-  
+
   subQuestion: subQuestions[] = [];
 
   constructor(private skillTest: ApiCallService) { }
