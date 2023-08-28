@@ -46,7 +46,7 @@
         </div>
         <h6>Add SubQuestion Detail <p-button styleClass="p-button-raised p-button-text p-button-info" *ngIf="!questionId" (click)="addSubQuestion()" icon="pi pi-plus"></p-button></h6>
     </div>
-    <button type="submit" data-dismiss="modal" [disabled]="!form.valid"
+    <button type="submit" data-dismiss="modal"
         class="btn btn-outline-dark mt-2 me-2">{{questionId?'Edit':'Add'}}</button>
     <button type="button" data-dismiss="modal" class="btn btn-outline-danger mt-2 me-2" (click)="delete()"
         *ngIf="questionId">Delete</button>

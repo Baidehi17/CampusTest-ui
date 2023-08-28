@@ -48,7 +48,7 @@ export class PopUpFormComponent {
 
   addSubQuestion() {
     this.subQuestions.push(this.fb.group({
-      id: ['', Validators.required],
+      id: [''],
       subQuestionName: ['', Validators.required],
       numberOfQuestion: ['', Validators.required],
       timeLimit: ['', Validators.required]
@@ -113,12 +113,11 @@ export class PopUpFormComponent {
     };
     this.skillTest.updateQuestion(updatedQuestionDetails).subscribe(
       () => {
-      },
+        PopUpEventService.reloadData.emit();  },
       (error) => {
         console.log('error');
       }
     );
-    PopUpEventService.reloadData.emit();
 
     const updatedSubQuestions: subQuestions[] = this.subQuestions.controls.map((subQuestionControl: AbstractControl, index: number) => {
       const subQuestionFormGroup = subQuestionControl as FormGroup;
@@ -141,6 +140,7 @@ export class PopUpFormComponent {
     });
     PopUpEventService.reloadData.emit();
   }
+
   async AddDetails() {
     const updatedQuestionDetails = {
       questionType: this.form.value.questionType,
@@ -165,10 +165,11 @@ export class PopUpFormComponent {
     ADDSubQuestions.forEach((ADDSubQuestions, index) => {
       this.skillTest.addSubquestion(ADDSubQuestions).subscribe(
         () => {
-          console.log(`Sub-question ${index + 1} updated successfully`);
+          PopUpEventService.reloadData.emit();
+          console.log();
         },
         (error) => {
-          console.log(`Error updating sub-question ${index + 1}:`, error);
+          console.log(error);
         }
       );
     });
