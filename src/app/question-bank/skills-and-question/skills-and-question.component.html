@@ -2,32 +2,16 @@
     <div class="top-bar mt-3">
         <h4>Question Paper</h4>
         <div class="mb-2">
-            <p-button label="Add Question Paper" styleClass="p-button-sm" class="buttons" (onClick)="addQuestionPaper()"></p-button>
-
-            <!-- <button *ngIf="screenWidth <= 768" (click)="openSidebar()"><i class="pi pi-bars"
-                    style="font-size: 1.2rem;"></i></button> -->
-            <!-- <p-sidebar *ngIf="screenWidth <= 768 && sidebarVisible" [(visible)]="sidebarVisible" [modal]="false"
-                [baseZIndex]="10000">
-                <div>
-                    <ul>
-                        <ng-container>
-                            <li>
-                                <span class="p-menuitem-text">
-                                    <button>Add Skill</button>
-                                    <button>Add Question</button>
-                                </span>
-                            </li>
-                        </ng-container>
-                    </ul>
-                </div>
-            </p-sidebar> -->
+            <p-button label="Add Question Paper" styleClass="p-button-sm" class="buttons"
+                (onClick)="addQuestionPaper()"></p-button>
         </div>
     </div>
     <div>
         <div class="row">
             <div class="question-cards col-md-3 m-1 mt-5 " *ngFor="let skill of questionDetails">
                 <div class="question-details">
-                    <p class="h6 ms-2 mt-2">{{skill.questionType}}<img src="assets/edit.svg"></p>
+                    <p class="h6 ms-2 mt-2">{{skill.questionType}}<button (click)="editQuestionDetail(skill)"><img
+                                src="assets/edit.svg"></button><button (click)="delete(skill)"><img src="assets/trash3.svg"></button></p>
                     <p class="question-info  ms-2">{{skill.description}}</p>
                     <div class="mt-4 ms-2 total-questions">
                         <p>view / Add Questions</p>
@@ -41,5 +25,16 @@
     </div>
 </div>
 <ng-template #popupTemplate>
-    <app-pop-up-form></app-pop-up-form>
+    <div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title" >{{id?'Edit':'Add'}} Question</h4>
+        <button type="button" class="close" aria-label="Close" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <app-pop-up-form [questionId]="id" ></app-pop-up-form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="close()">Close</button>
+    </div>
 </ng-template>

@@ -6,6 +6,7 @@ import { ButtonModule } from 'primeng/button';
 import { SidebarModule } from 'primeng/sidebar';
 import { SkillsAndQuestionCardComponent } from './skills-and-question-card/skills-and-question-card.component';
 import { PopUpFormComponent } from './pop-up-form/pop-up-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     SkillsAndQuestionComponent,
@@ -15,7 +16,8 @@ import { PopUpFormComponent } from './pop-up-form/pop-up-form.component';
   imports: [
     CommonModule,
     ButtonModule,
-    SidebarModule
+    SidebarModule,
+    ReactiveFormsModule
   ],
   exports:[
     SkillsAndQuestionComponent

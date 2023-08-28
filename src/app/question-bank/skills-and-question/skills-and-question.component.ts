@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component, HostListener , OnInit, ViewChild} from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { ApiCallService } from 'src/app/service/api-call.service';
 import { QuestionDetails } from 'src/app/model/QuestionDetails';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PopUpEventService } from 'src/app/service/pop-up-event.service';
 
 @Component({
   selector: 'app-skills-and-question',
@@ -11,45 +12,52 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 
 
-export class SkillsAndQuestionComponent implements OnInit{
+export class SkillsAndQuestionComponent implements OnInit {
 
-  @ViewChild('popupTemplate') popupTemplate:any;
+  @ViewChild('popupTemplate') popupTemplate: any;
 
+  id!: number;
   screenWidth!: number;
   sidebarVisible: boolean = false;
-  questionDetails :QuestionDetails[]=[];
+  questionDetails: QuestionDetails[] = [];
+  closeResult: string = '';
 
-  constructor(private skillTest: ApiCallService,private modalService: NgbModal) {
+  constructor(private skillTest: ApiCallService, private modalService: NgbModal) {
     this.screenWidth = window.innerWidth;
   }
 
   ngOnInit(): void {
-    this.skillTest.GetQuestionDetials().subscribe(res=>{
+    this.onload();
+    PopUpEventService.reloadData.subscribe(res => {
+      this.onload();
+    })
+  }
+  onload() {
+    this.skillTest.GetQuestionDetials().subscribe(res => {
       this.questionDetails = res;
-      console.log(res);
     })
   }
 
-  // @HostListener('window:resize', ['$event'])
-  // onResize(event:any) {
-  //   this.screenWidth = window.innerWidth;
-  // }
+  addQuestionPaper() {
+    this.id = 0;
+    this.modalService.open(this.popupTemplate);
+  }
 
-  // openSidebar() {
-  //   if (this.screenWidth >= 768 ||this.screenWidth >= 425 ||this.screenWidth >= 375 || this.screenWidth >= 320) {
-  //     this.sidebarVisible = !this.sidebarVisible;
-  //   }
-  // }
-
-  
-  open() {
+  editQuestionDetail(question: QuestionDetails) {
+    if (question.id != 0) {
+      this.id = question.id;
+    }
     this.modalService.open(this.popupTemplate);
   }
 
   close() {
     this.modalService.dismissAll();
   }
-  addQuestionPaper(){
 
+  delete(question: QuestionDetails) {
+    if (question.id != 0) {
+      this.id = question.id;
+    }
+    this.modalService.open(this.popupTemplate);
   }
 }

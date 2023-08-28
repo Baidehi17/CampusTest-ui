@@ -1,5 +1,5 @@
 export class subQuestions {
-    Id!: number
+    id!: number
     subQuestionName!: string
     numberOfQuestion!: number;
     timeLimit!:number;

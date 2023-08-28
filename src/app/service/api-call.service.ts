@@ -25,8 +25,31 @@ export class ApiCallService {
   getSubQuestionDetailsByID(id: number): Observable<subQuestions[]> {
     return this.http.get<subQuestions[]>(`https://localhost:7053/api/SubQuestions/id?id=${id}`);
   }
-  
-  getQuestionDetailsByID(id: number): Observable<QuestionDetails[]> {
-    return this.http.get<QuestionDetails[]>(`https://localhost:7053/api/QuestionDetails/id?id=${id}`);
+
+  getQuestionDetailsByID(id: number): Observable<QuestionDetails> {
+    return this.http.get<QuestionDetails>(`https://localhost:7053/api/QuestionDetails/id?id=${id}`);
+  }
+
+  updateQuestion(question: QuestionDetails): Observable<QuestionDetails> {
+    return this.http.put<QuestionDetails>('https://localhost:7053/api/QuestionDetails/id', question)
+  }
+  updateSubQuestion(subQuest: subQuestions): Observable<subQuestions> {
+    return this.http.put<subQuestions>('https://localhost:7053/api/SubQuestions/id', subQuest)
+  }
+  deleteQuest(id:number):Observable<QuestionDetails> {
+    return this.http.delete<QuestionDetails>(`https://localhost:7053/api/QuestionDetails/id?id=${id}`)
+  }
+  DeletesubQuest(id:number):Observable<subQuestions> {
+    return this.http.delete<subQuestions>(`https://localhost:7053/api/SubQuestions/id?id=${id}`)
+  }
+  deleteSubById(id:number):Observable<subQuestions>
+  {
+    return this.http.delete<subQuestions>(`https://localhost:7053/api/SubQuestions/DeleteById?id=${id}`) 
+  }
+  addquestion(quest:any):Observable<QuestionDetails>{
+    return this.http.post<QuestionDetails>('https://localhost:7053/api/QuestionDetails', quest)
+  }
+  addSubquestion(quest:any):Observable<subQuestions>{
+    return this.http.post<subQuestions>('https://localhost:7053/api/SubQuestions', quest)
   }
 }

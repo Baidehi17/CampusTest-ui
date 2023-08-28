@@ -16,25 +16,16 @@
     .skill-question{
         .top-bar{
             .buttons{
-                margin: 0rem 0rem 0rem 0rem ; 
+                margin: 0rem 0.5rem 0rem 0rem ; 
             }
         }
-        button{
-            //display:block;
-            //border: none;
-            //background-color: transparent;
-            // }
-            // .pi-bars {
-            //     color: rgb(82, 127, 196);
-             }
     }
-    ::ng-deep .p-button{
-      // display: none;
-      padding: 0rem;
+    ::ng-deep .p-button.p-button-sm{
+      font-size: 0.7rem;
+      padding: 0.4rem;
     }
 }
 .question-cards {
-    // p {margin-bottom: 0px; }
      hr {margin: 0px; }
  
      width: 32%;
@@ -46,6 +37,10 @@
  
      .question-details {
  
+        button{
+            background-color: transparent;
+            border: none;
+        }
          .question-info {
              color: #8d8484;
          }

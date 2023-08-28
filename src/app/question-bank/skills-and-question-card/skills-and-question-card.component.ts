@@ -14,21 +14,18 @@ export class SkillsAndQuestionCardComponent implements OnInit {
 
 
   @Input() id!: number;
-
+  @Input() questionId!: number;
+  
   subQuestion: subQuestions[] = [];
-  skills: skillAndQuestion[] = [];
 
   constructor(private skillTest: ApiCallService) { }
 
   ngOnInit(): void {
-    this.skillTest.skillAndQuestion().subscribe(res => {
-      this.skills = res;
-    })
     this.getsubQuestionDetails();
   }
+
   getsubQuestionDetails() {
     this.skillTest.getSubQuestionDetailsByID(this.id).subscribe(res => {
-      console.log(res);
       this.subQuestion = res;
     })
   }
